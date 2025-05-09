@@ -1,0 +1,10 @@
+GET https://www.google.com
+
+###
+
+POST http://localhost
+
+{
+  "username": "admin",
+  "password": "1234"
+}
