@@ -6,7 +6,7 @@ export default [
     files: ['**/*.js'],
     languageOptions: {
       ecmaVersion: 2020,
-      globals: globals.browser,
+      globals: globals.node,
     },
     rules: {
       ...js.configs.recommended.rules,

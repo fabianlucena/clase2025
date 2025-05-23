@@ -1,5 +1,6 @@
 import { InvalidArgumentException } from '../exceptions/invalid_argument_exception.js';
 import { InvalidCredemntialsException } from '../exceptions/invalid_credentials_exception.js';
+import { getDependency } from '../libs/dependencies.js';
 
 export class LoginService {
   static async login(credentials) {
@@ -11,10 +12,12 @@ export class LoginService {
     )
       throw new InvalidArgumentException();
 
-    if (credentials.username !== 'admin')
+    const UserService = getDependency('UserService');
+    const user = await UserService.getSingleOrNullByUsername(credentials.username);
+    if (!user)
       throw new InvalidCredemntialsException();
 
-    if (credentials.password !== '1234')
+    if (credentials.password !== user.password)
       throw new InvalidCredemntialsException();
 
     return {
