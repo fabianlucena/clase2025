@@ -6,6 +6,7 @@ import { addDependency } from './libs/dependencies.js';
 import { UserService } from './services/user.js';
 import { LoginService } from './services/login.js';
 import { UserMockup } from './mockups/user.js';
+import config from './config.js';
 
 const app = express();
 
@@ -23,10 +24,9 @@ addDependency('UserService', UserService);
 addDependency('LoginService', LoginService);
 addDependency('UserModel', UserMockup);
 
-const PORT = 3000;
 app.listen(
-  PORT,
+  config.port,
   () => {
-    console.log(`Servidor corriendo en http://localhost:${PORT}`);
+    console.log(`Servidor corriendo en http://localhost:${config.port}`);
   }
 );

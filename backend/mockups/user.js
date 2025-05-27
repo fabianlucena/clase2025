@@ -2,13 +2,13 @@ export class UserMockup {
   static users = [
     {
       username: 'admin',
-      password: '1234',
+      hashedPassword: '$2b$10$teSUseenCaoeaMUpmBpl7unyHN5n6w1ZEnZmgyLNveMBpPZULn.Ge',
       name: 'Admin',
       email: 'admin@fake.com',
     },
     {
       username: 'operator',
-      password: '12345',
+      hashedPassword: '$2b$10$teSUseenCaoeaMUpmBpl7unyHN5n6w1ZEnZmgyLNveMBpPZULn.Ge',
       name: 'Operador',
       email: 'operator@fake.com',
     },
