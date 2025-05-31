@@ -1,0 +1,14 @@
+POST http://localhost:3000/api/login
+Accept: application/json
+Content-Type: application/json
+
+{
+  "username": "operator",
+  "password": "1234"
+}
+
+### 
+GET http://localhost:3000/api/user
+Accept: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjIsInVzZXJuYW1lIjoib3BlcmF0b3IiLCJmdWxsTmFtZSI6Ik9wZXJhZG9yIiwicm9sZXMiOlsib3BlcmF0b3IiXSwiaWF0IjoxNzQ4NjQ0NTQ4LCJleHAiOjE3NDg2NDgxNDh9.ySHKzo-PxC6juGDdXH7bd3mrBIYXuVSB8NOJzOHh1TA
+Content-Type: application/json

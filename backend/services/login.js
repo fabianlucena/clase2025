@@ -3,6 +3,7 @@ import { InvalidCredemntialsException } from '../exceptions/invalid_credentials_
 import { getDependency } from '../libs/dependencies.js';
 import bcrypt from 'bcrypt';
 import config from '../config.js';
+import jwt from 'jsonwebtoken';
 
 export class LoginService {
   static async login(credentials) {
@@ -29,10 +30,19 @@ export class LoginService {
     if (!(await bcrypt.compare(credentials.password, user.hashedPassword)))
       throw new InvalidCredemntialsException();
 
-    const jwt = config.jwtKey;
+    const token = jwt.sign(
+      {
+        userId: user.id,
+        username: user.username,
+        fullName: user.fullName,
+        roles: user.roles,
+      },
+      config.jwtKey,
+      {
+        expiresIn: '1h' // El token expirará en 1 hora
+      }
+    );
 
-    return {
-      token: jwt
-    };
+    return { token };
   }
 }

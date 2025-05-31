@@ -5,4 +5,9 @@ export class UserService {
     const UserModel = getDependency('UserModel');
     return await UserModel.getSingleOrNullByUsername(username);
   }
+
+  static async get() {
+    const UserModel = getDependency('UserModel');
+    return await UserModel.get();
+  }
 }
