@@ -20,13 +20,6 @@ export class LoginService {
     if (!user)
       throw new InvalidCredemntialsException();
 
-    /*
-    console.log('Calculando hash');
-    const hash = bcrypt.hashSync('1234', 10);
-    console.log(hash);
-    console.log('Hash calculado');
-    */
-
     if (!(await bcrypt.compare(credentials.password, user.hashedPassword)))
       throw new InvalidCredemntialsException();
 
@@ -39,7 +32,7 @@ export class LoginService {
       },
       config.jwtKey,
       {
-        expiresIn: '1h' // El token expirará en 1 hora
+        expiresIn: '24h' // El token expirará en 1 hora
       }
     );
 
