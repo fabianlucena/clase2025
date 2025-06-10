@@ -1,5 +1,6 @@
 import jwt from 'jsonwebtoken';
 import config from '../config.js';
+import { ForbiddenException } from '../exceptions/forbidden_exception.js';
 
 export function authorizationMiddleware(req, res, next) {
   const auth = req.headers.authorization;
@@ -24,4 +25,14 @@ export function authorizationMiddleware(req, res, next) {
   req.session = data;
     
   next();
+}
+export function checkForRole(role) {
+  return (req, res, next) => {
+    if (req.session?.roles?.includes(role)) {
+      next();
+      return;
+    }
+
+    throw new ForbiddenException();
+  };
 }
