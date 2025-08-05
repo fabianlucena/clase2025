@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import Form from './Form.jsx';
 import TextField from './TextField.jsx';
+import { useModal } from './Modal.jsx';
 
 export default function Login() {
-  const [username, setUsername] = useState('');
-  const [password, setPassword] = useState('');
+  const [username, setUsername] = useState('1');
+  const [password, setPassword] = useState('2');
+  const { open: openModal } = useModal();
 
   function submit() {
-   alert(`Llamar al backend con { username:"${username}", password:"${password}" }`);
+    openModal('Ingresando');
+    /*setTimeout(
+      () => modal.close(),
+      2500
+    );*/
   }
 
   return (

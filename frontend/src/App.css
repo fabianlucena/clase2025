@@ -5,3 +5,23 @@
   flex-direction: column;
   justify-content: center;
 }
+
+.modal-background {
+  position: fixed;
+  background-color: rgba(128, 128, 128, 0.5);
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-body {
+  background-color: white;
+  color: black;
+  padding: 2em;
+  border-radius: 1em;
+  box-shadow: .5em .5em 2em darkblue;
+}
