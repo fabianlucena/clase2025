@@ -1,0 +1,80 @@
+.snackbar-container {
+  position: fixed;
+  bottom: 0;
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  color: black;
+  font-weight: bold;
+  font-size: 120%;
+}
+
+.snackbar-item {
+  position: relative;
+  border: .3em solid gray;
+  background-color: lightgray;
+  border-radius: .5em;
+  width: 18em;
+  margin: .5em 1em;
+  padding: .5em;
+  height: 2em;
+}
+
+.error {
+  border-color: darkred;
+  background-color: pink;
+  color: darkred;
+}
+
+.warning {
+  border-color: #7c4400;
+  background-color: lightyellow;
+  color: #7c4400;
+}
+
+.info {
+  border-color: #00006b;
+  background-color: lightblue;
+  color: #00006b;
+}
+
+.success {
+  border-color: #003800;
+  background-color: #b6ebb6;
+  color: #003800;
+}
+
+.snackbar-item {
+  animation: slideUp 0.4s ease-out forwards;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    height: 0;
+  }
+  to {
+    opacity: 1;
+    height: 2em;
+  }
+}
+
+.snackbar-item.hide {
+  animation: hide 0.4s ease-out forwards;
+}
+
+@keyframes hide {
+  from {
+    opacity: 1;
+    left: 0;
+    height: 2em;
+    margin: .5em 1em;
+    padding: .5em;
+  }
+  to {
+    opacity: 0;
+    left: -20em;
+    height: 0;
+    margin: -1em;
+  }
+}
