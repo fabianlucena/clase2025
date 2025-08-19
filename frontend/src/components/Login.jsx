@@ -1,24 +1,31 @@
 import { useState } from 'react';
 import Form from './Form.jsx';
 import TextField from './TextField.jsx';
-import { useModal } from './Modal.jsx';
+import { login } from '../services/loginService.js';
+import * as api from '../libs/api.js';
+//import { useModal } from './Modal.jsx';
 import { useSnackbar } from './Snackbar.jsx';
 
 export default function Login() {
   const [username, setUsername] = useState('1');
   const [password, setPassword] = useState('2');
-  const { open: openModal } = useModal();
+  //const { open: openModal } = useModal();
   const snackbar = useSnackbar();
 
-  function submit() {
-    //openModal('Ingresando');
-    snackbar.enqueue('Ingresando', { variant: 'info', timeout: 5000 });
-    snackbar.enqueue('Ingreso OK', { variant: 'success', timeout: 6000 });
-    snackbar.enqueue('Error de ingreso', { variant: 'error', timeout: 6500 });
-    /*setTimeout(
-      () => modal.close(),
-      2500
-    );*/
+  async function submit() {
+    try {
+      const data = await login(username, password);
+      if (data.token) {
+        api.headers.Authorization = `Bearer ${data.token}`;
+        
+        snackbar.enqueue('Ingreso OK', { variant: 'success', timeout: 6000 });
+        snackbar.enqueue(data.token, { variant: 'success', timeout: 6000 });
+      } else {
+        snackbar.enqueue('Error de ingreso', { variant: 'error', timeout: 6500 });
+      }
+    } catch (err) {
+      snackbar.enqueue(`Ha ocurrido un error: ${err.message}`, { variant: 'error', timeout: 6500 });
+    }
   }
 
   return (
