@@ -3,23 +3,23 @@ import Form from './Form.jsx';
 import TextField from './TextField.jsx';
 import { login } from '../services/loginService.js';
 import * as api from '../libs/api.js';
-//import { useModal } from './Modal.jsx';
 import { useSnackbar } from './Snackbar.jsx';
+import { useSession } from './Session.jsx';
 
 export default function Login() {
-  const [username, setUsername] = useState('1');
-  const [password, setPassword] = useState('2');
-  //const { open: openModal } = useModal();
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   const snackbar = useSnackbar();
+  const session = useSession();
 
   async function submit() {
     try {
       const data = await login(username, password);
       if (data.token) {
         api.headers.Authorization = `Bearer ${data.token}`;
-        
+        session.setIsLoggedIn(true);
+
         snackbar.enqueue('Ingreso OK', { variant: 'success', timeout: 6000 });
-        snackbar.enqueue(data.token, { variant: 'success', timeout: 6000 });
       } else {
         snackbar.enqueue('Error de ingreso', { variant: 'error', timeout: 6500 });
       }
@@ -32,6 +32,7 @@ export default function Login() {
     <Form
       title="Iniciar sesión"
       action={submit}
+      submitLabel="Ingresar"
     >
       <TextField
         label="Nombre de usuario"

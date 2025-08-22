@@ -3,6 +3,7 @@ import Button from './Button.jsx';
 export default function Form({
   children,
   title,
+  submitLabel,
   ...props
 }) {
   return (
@@ -12,7 +13,7 @@ export default function Form({
     >
       { title && <h2>{title}</h2> }
       {children}
-      <Button type="submit">Enviar</Button>
+      <Button type="submit">{submitLabel || 'Enviar'}</Button>
     </form>
   )
 }

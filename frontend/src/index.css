@@ -31,3 +31,23 @@ body {
   display: inline-block;
   margin-right: 1em;
 }
+
+form {
+  display: flex;
+  flex-direction: column;
+  border: .15em solid gray;
+  margin: 3em;
+  padding: 2em;
+  box-shadow: .5em .5em .75em rgb(182, 182, 182);
+  align-items: center;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  margin: .5em;
+}
+
+h2 {
+  margin: 0;
+}
