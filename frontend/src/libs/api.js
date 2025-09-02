@@ -42,6 +42,14 @@ export async function post(service, body, options) {
   return await fetchApi(service, {...options, body, method: 'POST'});
 }
 
+export async function get(service, query, options) {
+  return await fetchApi(service, {...options, query, method: 'GET'});
+}
+
 export async function postJson(service, body, options) {
   return await post(service, body, {...options, json: true});
+}
+
+export async function getJson(service, query, options) {
+  return await get(service, query, {...options, json: true});
 }

@@ -40,3 +40,31 @@ label {
 h2 {
   margin: 0;
 }
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.data-table tr {
+  text-align: left;
+  background-color: #4e584e;
+}
+
+.data-table thead tr {
+  text-align: left;
+  background-color: #555555;
+}
+
+.data-table tr:nth-child(2n) {
+  background-color: #54535f;
+}
+
+.data-table td {
+  border-top: 1px solid gray;
+  padding: .5em 1em;
+}
+
+.data-table th {
+  padding: .5em 1em;
+}

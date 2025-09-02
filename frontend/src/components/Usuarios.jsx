@@ -1,3 +1,31 @@
+import { useState, useEffect } from 'react';
+import * as userService from '../services/userService.js';
+
 export default function Usuarios() {
-  return 'Página de usuarios.';
+  const [usuarios, setUsuarios] = useState([]);
+
+  useEffect(() => {
+    userService.get()
+      .then(setUsuarios);
+  }, []);
+
+  return <table className="data-table"
+    >
+      <thead>
+        <tr>
+          <th>Nombre de usuario</th>
+          <th>Nombre completo</th>
+          <th>Email</th>
+          <th>Roles</th>
+        </tr>
+      </thead>
+      <tbody>
+        {usuarios.map(usuario => <tr key={usuario.uuid}>
+          <td>{usuario.username}</td>
+          <td>{usuario.fullName}</td>
+          <td>{usuario.email}</td>
+          <td>{usuario.roles.join(", ")}</td>
+        </tr>)}
+      </tbody>
+    </table>;
 }
