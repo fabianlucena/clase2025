@@ -21,17 +21,6 @@ body {
   min-height: 100vh;
 }
 
-.menu ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.menu li {
-  display: inline-block;
-  margin-right: 1em;
-}
-
 form {
   display: flex;
   flex-direction: column;

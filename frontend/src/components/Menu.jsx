@@ -1,3 +1,5 @@
+import './Menu.css';
+import { Link } from 'react-router-dom';
 import useSession from "./Session";
 
 export default function Menu() {
@@ -8,10 +10,13 @@ export default function Menu() {
       className="menu"
     >
       <ul>
-        <li><a href="/">Inicio</a></li>
-        {session.isLoggedIn && <li><a href="#" onClick={() => session.setIsLoggedIn(false)}>Salir</a></li>}
-        <li><a href="/about">Acerca de</a></li>
-        <li><a href="/contact">Contacto</a></li>
+        <li><Link to="/">Inicio</Link></li>
+        {session.isLoggedIn && <>
+          {session.user?.roles?.includes('admin') && <li><Link to="/usuarios">Usuarios</Link></li>}
+          <li><Link to="#" onClick={() => session.setIsLoggedIn(false)}>Salir</Link></li>
+        </>}
+        <li><Link to="/about">Acerca de</Link></li>
+        <li><Link to="/contact">Contacto</Link></li>
       </ul>
     </nav>
   );
