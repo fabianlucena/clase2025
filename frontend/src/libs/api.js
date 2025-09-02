@@ -8,6 +8,11 @@ export async function fetchApi(service, options) {
     ...options.headers,
   };
 
+  if (options.json) {
+    options.headers ??= {};
+    options.headers.Accept ||= 'application/json';
+  }
+
   if (options.body) {
     if (typeof options.body !== 'string') {
       options.body = JSON.stringify(options.body);
@@ -17,12 +22,19 @@ export async function fetchApi(service, options) {
     options.headers['Content-Type'] ||= 'application/json';
   }
 
-  if (options.json) {
-    options.headers ??= {};
-    options.headers.Accept ||= 'application/json';
+  let query = '';
+  if (options.query) {
+    if (typeof options.query === 'string') {
+      query = options.query;
+    } else {
+      query = new URLSearchParams(options.query).toString();
+    }
+
+    if (query.length)
+      query = `?${query}`;
   }
 
-  let res = await fetch(`${urlBase}${service}`, options);
+  let res = await fetch(`${urlBase}${service}${query}`, options);
 
   if (!res.ok)
     throw new Error("El resultado no es OK.");

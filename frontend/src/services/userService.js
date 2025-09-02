@@ -1,5 +1,5 @@
 import { getJson } from '../libs/api.js';
 
-export async function get() {
-  return await getJson('/user');
+export async function get(query) {
+  return await getJson('/user', query);
 }

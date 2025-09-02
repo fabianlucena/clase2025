@@ -6,7 +6,8 @@ export function user(app) {
     '/user',
     checkForRole('admin'),
     async (req, res) => {
-      const users = await UserService.get();
+      const query = req.query;
+      const users = await UserService.get(query);
       const result = users.map(user => ({
         uuid: user.uuid,
         username: user.username,
