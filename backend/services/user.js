@@ -60,4 +60,19 @@ export class UserService {
       throw new InvalidArgumentException('Usuario no encontrado.');
     }
   }
+
+  static async updateByUuid(uuid, data) {
+    if (!uuid) {
+      throw new InvalidArgumentException('Falta el parámetro uuid.');
+    }
+
+    const UserModel = getDependency('UserModel');
+    const user = await UserModel.findOneAndUpdate(
+      { uuid },
+      { $set: data },
+    );
+    if (!user) {
+      throw new InvalidArgumentException('Usuario no encontrado.');
+    }
+  }
 }

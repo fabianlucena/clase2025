@@ -20,14 +20,25 @@ export default function Usuario() {
 
   function submit(e) {
     e.preventDefault();
-    userService.post(data, {path: uuid})
-      .then(() => {
-        snackbar.enqueue('Usuario actualizado', { variant: 'success' });
-        navigate('/usuarios');
-      })
-      .catch(err => {
-        snackbar.enqueue(`Error al actualizar el usuario: ${err.message}`, { variant: 'error' });
-      });
+    if (uuid) {
+      userService.patch(uuid, data)
+        .then(() => {
+          snackbar.enqueue('Usuario actualizado', { variant: 'success' });
+          navigate('/usuarios');
+        })
+        .catch(err => {
+          snackbar.enqueue(`Error al actualizar el usuario: ${err.message}`, { variant: 'error' });
+        });
+    } else {
+      userService.post(data)
+        .then(() => {
+          snackbar.enqueue('Usuario creado', { variant: 'success' });
+          navigate('/usuarios');
+        })
+        .catch(err => {
+          snackbar.enqueue(`Error al crear el usuario: ${err.message}`, { variant: 'error' });
+        });
+    }
   }
 
   return <Form
@@ -72,7 +83,6 @@ export default function Usuario() {
       <TextField
         label="Cambiar contraseña"
         name="password"
-        required={true}
         type="password"
         value={data.password || ''}
         onChange={e => setData({ ...data, password: e.target.value })}

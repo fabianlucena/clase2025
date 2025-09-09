@@ -37,4 +37,13 @@ export function user(app) {
       res.status(204).send();
     }
   );
+
+  app.patch(
+    '/user/:uuid',
+    checkForRole('admin'),
+    async (req, res) => {
+      await UserService.updateByUuid(req.params.uuid, req.body);
+      res.status(204).send();
+    }
+  );
 }

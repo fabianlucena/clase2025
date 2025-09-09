@@ -62,6 +62,10 @@ export async function get(service, query, options) {
   return await fetchApi(service, {...options, query, method: 'GET'});
 }
 
+export async function patch(service, body, options) {
+  return await fetchApi(service, {...options, body, method: 'PATCH'});
+}
+
 export async function postJson(service, body, options) {
   return await post(service, body, {...options, json: true});
 }
