@@ -11,6 +11,7 @@ export default function Body({
         flexGrow: 1,
         display: 'flex',
         flexDirection: 'column',
+        overflow: 'auto',
       }}
     >
       { menuShowed && <Menu /> }

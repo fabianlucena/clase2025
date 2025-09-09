@@ -11,7 +11,14 @@ export default function Usuarios() {
       .then(setUsuarios);
   }, []);
 
-  return <table className="data-table"
+  return <>
+    <h3>Usuarios</h3>
+    <Button>
+      <Link to={`/usuario`}>
+        Agregar
+      </Link>
+    </Button>
+    <table className="data-table"
     >
       <thead>
         <tr>
@@ -37,5 +44,6 @@ export default function Usuarios() {
           </td>
         </tr>)}
       </tbody>
-    </table>;
+    </table>
+  </>;
 }

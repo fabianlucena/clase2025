@@ -10,6 +10,7 @@ export default function Content() {
       className="content"
       style={{
         flexGrow: 1,
+        overflow: 'auto',
       }}
     >
       {!session.isLoggedIn ?

@@ -22,6 +22,10 @@ export async function fetchApi(service, options) {
     options.headers['Content-Type'] ||= 'application/json';
   }
 
+  let path = '';
+  if (options.path)
+    path = '/' + options.path;
+
   let query = '';
   if (options.query) {
     if (typeof options.query === 'string') {
@@ -34,7 +38,7 @@ export async function fetchApi(service, options) {
       query = `?${query}`;
   }
 
-  let res = await fetch(`${urlBase}${service}${query}`, options);
+  let res = await fetch(`${urlBase}${service}${path}${query}`, options);
 
   if (!res.ok)
     throw new Error("El resultado no es OK.");
