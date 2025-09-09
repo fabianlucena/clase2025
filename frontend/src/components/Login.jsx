@@ -16,6 +16,8 @@ export default function Login() {
     try {
       const data = await login(username, password);
       if (data.token) {
+        localStorage.setItem('session', JSON.stringify(data));
+
         api.headers.Authorization = `Bearer ${data.token}`;
         session.setIsLoggedIn(true);
         session.setUser(data.user);
