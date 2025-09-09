@@ -66,6 +66,10 @@ export async function patch(service, body, options) {
   return await fetchApi(service, {...options, body, method: 'PATCH'});
 }
 
+export async function deleteItem(service, options) {
+  return await fetchApi(service, {...options, method: 'DELETE'});
+}
+
 export async function postJson(service, body, options) {
   return await post(service, body, {...options, json: true});
 }

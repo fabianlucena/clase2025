@@ -13,8 +13,6 @@ export default function App() {
     const session = useSession();
 
   useEffect(() => {
-    console.log('Se llama el useEffect de App');
-    
     const sessionText = localStorage.getItem('session');
     if(!sessionText)
       return;

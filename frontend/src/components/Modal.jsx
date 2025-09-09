@@ -8,11 +8,10 @@ export const useModal = () => useContext(ModalContext);
 export default useModal;
 
 export const ModalProvider = ({ children }) => {
-
   const [modal, setModal] = useState({ title: '', content: '' });
 
-  function open(content, title = '') {
-    setModal({ content, title });
+  function open(content, title = '', options) {
+    setModal({ content, title, ...options });
   }
 
   function close() {
@@ -38,6 +37,7 @@ export const ModalProvider = ({ children }) => {
               {modal.content}
             </div>
             <div className="modal-foot">
+              {modal.onYes && <button onClick={modal.onYes}>Aceptar</button>}
               <button onClick={close}>Cerrar</button>
             </div>
           </div>

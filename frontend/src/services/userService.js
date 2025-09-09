@@ -11,3 +11,7 @@ export async function post(body, options) {
 export async function patch(uuid, body) {
   return await api.patch('/user', body, { path: uuid });
 }
+
+export async function deleteUser(uuid) {
+  return await api.deleteItem('/user', { path: uuid });
+}
